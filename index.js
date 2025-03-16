@@ -1,15 +1,26 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const morgan = require('morgan');
 
 const users = require('./routes/users');
 const books = require('./routes/books');
-const reviews = require('./routes/reviews')
+const reviews = require('./routes/reviews');
+const addbookRoute  = require('./routes/addbook')
+
+const bookList = require('./data/books')
 
 const app = express();
 const PORT =3000;
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json({extended: true}));
+app.use(morgan('dev'));
+
+//setting the view engine as ejs
+app.set('view engine','ejs');
+
+app.use(express.static('public'));
+
 
 //Todo---Req 002 -- Create and use error-handling middleware.
 //Triggered error before middleware and captured after middleware
@@ -85,10 +96,12 @@ app.use((err, req, res, next) =>{
 app.use("/users", users);
 app.use("/books", books);
 app.use("/reviews", reviews)
+app.use('/addbook',addbookRoute)
 
-app.get('/',(req,res) =>{
-    res.send("Welcome to my webpage!!!");
+app.get('/',(req, res) =>{
+    res.render('viewbook',{title: "Book List", books: bookList})
 })
+
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

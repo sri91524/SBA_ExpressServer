@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css" />
+    <title>Add Books</title>
+</head>
+<body>
+   
+    <h2><%=title%></h2>
+    <form class="form-container" action="/addbook/add-book" method ="POST">
+        <label for="title">Book Title:
+            <input type="text" id="title" name ="title" required/>
+        </label><br/>
+        <label for="author">Author:
+            <input type="text" id="author" name ="author" required/>
+        </label><br/>       
+        <label for="publication_date">Publication Date:
+            <input type="date" id="publication_date" name ="publication_date" required/>
+        </label><br/>
+        <label for="genre">Genre:
+            <input type="text" id="genre" name ="genre" required/>
+        </label><br/>
+        <button type="submit">Add Book</button>
+    </form><br/>
+    <div class="container">       
+        <a href="/" class="button">Return to Book List</a>
+    </div>
+    
+</body>
+</html>

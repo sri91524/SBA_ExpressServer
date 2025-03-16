@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
+    <title>Book List</title>
+</head>
+<body>   
+    <br/>
+    <h2><%=title%></h2>
+    <div class="container">         
+        <a href="/addbook" class="button">Add Book</a>
+    </div>
+    <div >
+        <% books.forEach((book) =>{%>
+            <div class="cardbook">
+                <div class="fontbold"><%=book.title%></div>
+                <div class="smallfont"><%=book.author%></div> <br/>             
+                <div class="smallfont">Published on: <%=book.publication_date%></div>
+                <div class="smallfont">Genre: <%=book.genre%></div>
+            </div>
+            
+        <%})%>
+    </div>
+</body>
+</html>
