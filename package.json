@@ -1,7 +1,7 @@
 {
   "name": "sba_expressserver",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "index.js",  
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,6 +11,7 @@
   "description": "",
   "dependencies": {
     "body-parser": "^1.20.3",
+    "date-fns": "^4.1.0",
     "ejs": "^3.1.10",
     "express": "^4.21.2",
     "morgan": "^1.10.0"

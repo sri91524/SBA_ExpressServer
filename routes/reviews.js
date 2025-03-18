@@ -33,9 +33,9 @@ router
     })
 
     router
-        .route('/:reviewID')
+        .route('/:reviewID(\\d+)')
         .get((req, res) =>{
-            const review = reviews.find(review => review.reviewid == req.params.reviewID)
+            const review = reviews.find(review => review.reviewid == parseInt(req.params.reviewID,10))
             res.json(review)
         })
         .patch((req, res) =>{

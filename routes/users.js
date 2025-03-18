@@ -34,10 +34,10 @@ router
  * GET User by ID/ UPDATE/ DELETE USER
  */
 router
-    .route('/:userID')
+    .route('/:userID(\\d+)')
     .get((req,res) =>{
         // res.send(`UserId: ${req.params.userID}`);                        
-        const user = users.find((user)=> user.userid == req.params.userID)
+        const user = users.find((user)=> user.userid == parseInt(req.params.userID,10))
         if(user) {res.json(user)}
         else {res.status(404).send("User not found")}
     }) 

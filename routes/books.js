@@ -23,9 +23,9 @@ router
     })
 
     router
-    .route('/:bookID')
+    .route('/:bookID(\\d+)')
     .get((req,res) =>{
-        const book = books.find((book) => book.bookid == req.params.bookID)
+        const book = books.find((book) => book.bookid == parseInt(req.params.bookID,10))
         if(book){res.json(book)}
         else{res.status(404).send("Book not found")}
     })

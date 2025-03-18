@@ -37,32 +37,25 @@ app.use(express.static('public'));
  * requested url with date/time
  * requested method
  */
-
+//date-fns
+const {format , differenceInMilliseconds} = require('date-fns');
 app.use((req, res, next) =>{
+    let startTime = new Date();
     let dateTime = new Date();
 
-    //adjust 0 before single digit date
-    let date =("0" + dateTime.getDate()).slice(-2);
-    //get current month
-    let month = ("0" + (dateTime.getMonth()+1)).slice(-2);
+    let reqDate = format(dateTime, 'MMMM dd, yyyy HH:mm:ss');
     
-    //get current year
-    let year = dateTime.getFullYear();
-
-    //get current hours
-    let hours = dateTime.getHours();
-
-    //get current minutes
-    let minutes = dateTime.getMinutes();
-
-    //get current seconds
-    let seconds = dateTime.getSeconds();
-
-    let reqDate = year + "-" + month + "-" + date + " " + hours + ":" + minutes + ":" + seconds;
     console.log(`====================================================`);
     console.log(`Request made to ${req.url} at ${reqDate}`);
     console.log(`Request method- ${req.method}`);
-    console.log(`=====================================================`)
+   
+
+    res.on('finish', () => {
+        let endTime = new Date();
+        const diff = differenceInMilliseconds(endTime, startTime);   
+        console.log(`Response sent. Time taken: ${diff} milliseconds`);
+        console.log(`=====================================================`);
+    })
     next();
 })
 
@@ -93,9 +86,14 @@ app.use((err, req, res, next) =>{
     res.status(500).send("Error in handling API"); // to display in browser
 })
 
-app.use("/users", users);
-app.use("/books", books);
-app.use("/reviews", reviews)
+// app.use(/^\/users?$/, users);
+// app.use(/^\/books?$/, books);
+// app.use(/^\/reviews?$/, reviews)
+
+app.use('/users', users);
+app.use('/books', books);
+app.use('/reviews', reviews)
+
 app.use('/addbook',addbookRoute)
 
 app.get('/',(req, res) =>{
