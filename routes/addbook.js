@@ -2,6 +2,10 @@ const express = require('express')
 const router = express.Router()
 const bookList = require('../data/books')
 
+// Create GET routes for all data that should be exposed to the client.
+// Create and render at least one view using a view template and template engine. This can be a custom template engine or a third-party engine.
+// Use simple CSS to style the rendered views.
+
 router.get('/',(req, res) =>{
     res.render('addbook',{title:'Add Book'})
 })

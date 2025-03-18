@@ -25,6 +25,7 @@ app.use(express.static('public'));
 //Todo---Req 002 -- Create and use error-handling middleware.
 //Triggered error before middleware and captured after middleware
 //! In order to get Req 001 to get executed, below block of code need to be commented
+//!This is added for tessting error handling
 
 // app.use((req, res, next) =>{
 //     const error = new Error("Could not access API");
@@ -37,6 +38,7 @@ app.use(express.static('public'));
  * requested url with date/time
  * requested method
  */
+// one third-party Node package for practical, sensible purposes
 //date-fns
 const {format , differenceInMilliseconds} = require('date-fns');
 app.use((req, res, next) =>{

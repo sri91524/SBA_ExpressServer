@@ -2,11 +2,17 @@ const books = require("../data/books")
 const express = require('express')
 const router = express.Router() 
 
+// Create GET routes for all data that should be exposed to the client.
+// Create POST routes for data, as appropriate. At least one data category should allow for client creation via a POST request
+// Create PATCH or PUT routes for data, as appropriate. At least one data category should allow for client manipulation via a PATCH or PUT request.
+// Include query parameters for data filtering, where appropriate. At least one data category should allow for additional filtering through the use of query parameters.
+// practical usage of regular expressions within route paths.
+
 router
     .route('/')
     .get((req, res) => {
         res.json(books)
-    })
+    })    
     .post((req,res) =>{
         if(req.body.title && req.body.author && req.body.publication_date && req.body.genre ){
             const book = {
